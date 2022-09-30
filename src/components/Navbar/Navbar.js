@@ -5,7 +5,7 @@ import Brand from '../Brand/Brand'
 
 const Navbar = () => {
     return(
-        <nav class="navbar">
+        <nav className="navbar">
             <Brand/>
             <div>
                 <Button text={"Camperas"}/>
