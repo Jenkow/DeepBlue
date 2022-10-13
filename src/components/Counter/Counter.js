@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import Button from 'react-bootstrap/Button';
+import "./Counter.css"
 
-const Counter = () => {
+const Counter = ({stck}) => {
     const [num, setNum] = useState(0)
-    const [stock, setStock] = useState(10)
+    const [stock, setStock] = useState(stck)
 
     function subtract(){
         if(num>0){
@@ -22,11 +24,12 @@ const Counter = () => {
     }
 
     return(
-        <div>
+        <div className="counterContainer">
+            <Button variant="primary" onClick={subtract}>-</Button>
             {num}
-            <button onClick={subtract}>-</button>
-            <button onClick={add}>+</button>
-            <button onClick={buy}>COMPRAR</button>
+            <Button variant="primary" onClick={add}>+</Button>
+            <p><Button className="customButton" variant="primary" onClick={buy}>Agregar al carrito</Button></p>
+            
         </div>
     )
 
