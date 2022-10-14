@@ -28,8 +28,6 @@ const Counter = ({stck}) => {
             <Button variant="primary" onClick={subtract}>-</Button>
             {num}
             <Button variant="primary" onClick={add}>+</Button>
-            <p><Button className="customButton" variant="primary" onClick={buy}>Agregar al carrito</Button></p>
-            
         </div>
     )
 

@@ -21,6 +21,28 @@ export const getProducts = () => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(products)
-        }, 2000)
+        }, 1000)
     })
+}
+
+export const getProductsById = (id) => {
+    var product={}
+    return new Promise((resolve) => {
+        products.forEach((prod)=> {
+            if (prod.id === id){
+                product=prod;
+            }
+        })
+        setTimeout(() => {
+            resolve(product)
+        }, 1000)
+    })
+}
+
+export const getProductsByCategory = (categoryId) => {
+    return new Promise (resolve => (
+        setTimeout(()=> {
+            resolve(products.filter(({category}) => category === categoryId))
+        }, 1000)
+    ))
 }

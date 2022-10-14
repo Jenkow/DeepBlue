@@ -1,7 +1,8 @@
 import './Brand.css'
+import {Link} from 'react-router-dom'
 
 const Brand = () => {
-    return <h1 className='Brand'>Deep Blue</h1>
+    return <Link to='/' className="Brand"><h2>Deep Blue</h2></Link>
 }
 
 export default Brand

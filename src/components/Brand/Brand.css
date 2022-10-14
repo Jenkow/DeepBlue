@@ -1,4 +1,8 @@
 .Brand {
     font-family: 'Oswald', sans-serif;
     font-size: 35px;
+    text-decoration: none;
+    margin: 5px;
+    color:aliceblue;
 }
+
