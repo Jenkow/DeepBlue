@@ -2,27 +2,26 @@ import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import "./Counter.css"
 
-const Counter = ({stck}) => {
-    const [num, setNum] = useState(0)
+const Counter = ({stck, onAdd}) => {
+    const [num, setNum] = useState(1)
     const [stock, setStock] = useState(stck)
 
     function subtract(){
         if(num>0){
-            setNum(num-1)
+            const n = num-1
+            setNum(n)
+            onAdd(n)
         }
     }
 
     function add(){
         if(num<stock){
-            setNum(num+1)
+            const n = num+1
+            setNum(n)
+            onAdd(n)
         }
     }
-
-    function buy(){
-        setStock(stock-num)
-        setNum(0)
-    }
-
+    
     return(
         <div className="counterContainer">
             <Button variant="primary" onClick={subtract}>-</Button>

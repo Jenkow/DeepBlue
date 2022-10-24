@@ -28,7 +28,7 @@ const ItemListContainer = ({ greeting }) => {
             <Card.Text>
                 Precio: ${prod.price}
             </Card.Text>
-            <Link to={`/detail/${prod.id}`}>Ver detalle</Link>
+            <Link to={`/detail/${prod.id}`} className="finish">Ver detalle</Link>
         </Card.Body>
     </Card>)
 
