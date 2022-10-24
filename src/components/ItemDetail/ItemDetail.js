@@ -16,11 +16,7 @@ const ItemDetail = ({id, name, img, category, description, price, stock}) => {
     const handleOnAdd = (quantity) => {
         setQ(quantity)
         const productToAdd = {id, name, price, quantity}
-        console.log(productToAdd)
         addItem(productToAdd)
-    }
-
-    const onClickHandler = () => {
         setReady(true)
     }
 
@@ -37,8 +33,7 @@ const ItemDetail = ({id, name, img, category, description, price, stock}) => {
                 <h6>Precio: ${price}</h6>
                 {!ready ?
                     <div>
-                        <Counter onAdd={handleOnAdd} stck={stock}/>
-                        <Button onClick={onClickHandler} className="customButton" variant="primary">Agregar al carrito</Button>
+                        <Counter onAdd={handleOnAdd} stck={stock}/>                        
                     </div> :
                     <div style={{marginTop: "2rem"}}>
                         <Link to={'/'} className='finish' >Finalizar compra</Link>

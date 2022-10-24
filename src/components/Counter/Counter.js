@@ -10,7 +10,6 @@ const Counter = ({stck, onAdd}) => {
         if(num>0){
             const n = num-1
             setNum(n)
-            onAdd(n)
         }
     }
 
@@ -18,7 +17,6 @@ const Counter = ({stck, onAdd}) => {
         if(num<stock){
             const n = num+1
             setNum(n)
-            onAdd(n)
         }
     }
     
@@ -27,6 +25,7 @@ const Counter = ({stck, onAdd}) => {
             <Button variant="primary" onClick={subtract}>-</Button>
             {num}
             <Button variant="primary" onClick={add}>+</Button>
+            <p><Button onClick={()=> onAdd(num)} className="customButton" variant="primary">Agregar al carrito</Button></p>
         </div>
     )
 
