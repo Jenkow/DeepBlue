@@ -5,7 +5,6 @@ export const CartContext = createContext()
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [totalQuantity, setTotalQuantity] = useState(0)
-    console.log(cart)
 
     useEffect(() => {
         setTotalQuantity(getQuantity())
@@ -36,8 +35,12 @@ export const CartProvider = ({children}) => {
         return acc
     }
 
+    const isEmpty = () => {
+        return (cart.length === 0)
+    }
+
     return (
-        <CartContext.Provider value={{cart, addItem, removeItem, totalQuantity}}>
+        <CartContext.Provider value={{cart, addItem, removeItem, totalQuantity, isEmpty}}>
             {children}
         </CartContext.Provider>
     )

@@ -1,5 +1,4 @@
 import "./ItemDetail.css"
-import Button from 'react-bootstrap/Button';
 import React, {useState,useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import Counter from '../Counter/Counter'
@@ -9,12 +8,10 @@ import { CartContext } from "../../context/CartContext";
 
 
 const ItemDetail = ({id, name, img, category, description, price, stock}) => {
-    const [q,setQ] = useState(1)
     const [ready, setReady] = useState(false)
     const {addItem} = useContext(CartContext)
     
     const handleOnAdd = (quantity) => {
-        setQ(quantity)
         const productToAdd = {id, name, price, quantity}
         addItem(productToAdd)
         setReady(true)
@@ -36,7 +33,7 @@ const ItemDetail = ({id, name, img, category, description, price, stock}) => {
                         <Counter onAdd={handleOnAdd} stck={stock}/>                        
                     </div> :
                     <div style={{marginTop: "2rem"}}>
-                        <Link to={'/'} className='finish' >Finalizar compra</Link>
+                        <Link to={'/cart'} className='finish' >Finalizar compra</Link>
                         <Link to={'/'} className='finish' >Volver a inicio</Link>
                     </div>
                 }
