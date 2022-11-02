@@ -3,10 +3,10 @@ import { useContext } from 'react'
 import { CartContext } from "../../context/CartContext";
 import ListGroup from 'react-bootstrap/ListGroup';
 import CloseButton from 'react-bootstrap/CloseButton';
-import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart, removeItem, isEmpty } = useContext(CartContext)
+    const { cart, removeItem, isEmpty, total } = useContext(CartContext)
     if (isEmpty()) {
         return <h1>Tu carrito esta vacío</h1>
     }
@@ -21,20 +21,12 @@ const Cart = () => {
         </ListGroup>)
         
 
-    const getTotal = () => {
-        let accu = 0;
-        cart.forEach(prod => {
-            accu += (prod.price*prod.quantity)
-        });
-        return accu
-    }
-
     return (
         <div>
             <h1>Tu carrito</h1>
             {cartRows}
-            <h3>Total: ${getTotal()}</h3>
-            <Button variant="info">Crear Orden</Button>
+            <h3>Total: ${total()}</h3>
+            <Link to={'/checkout'} className='finish' >Finalizar compra</Link>
         </div>
 
     );

@@ -30,7 +30,7 @@ const ItemDetail = ({id, name, img, category, description, price, stock}) => {
                 <h6>Precio: ${price}</h6>
                 {!ready ?
                     <div>
-                        <Counter onAdd={handleOnAdd} stck={stock}/>                        
+                        { stock !== 0 ? <Counter onAdd={handleOnAdd} stck={stock}/> : <p>No hay stock</p>}                        
                     </div> :
                     <div style={{marginTop: "2rem"}}>
                         <Link to={'/cart'} className='finish' >Finalizar compra</Link>
