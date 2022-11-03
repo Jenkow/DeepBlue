@@ -3,12 +3,16 @@ import { useContext } from 'react'
 import { CartContext } from "../../context/CartContext";
 import ListGroup from 'react-bootstrap/ListGroup';
 import CloseButton from 'react-bootstrap/CloseButton';
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart, removeItem, isEmpty, total } = useContext(CartContext)
+    const { cart, removeItem, isEmpty, total, clearCart } = useContext(CartContext)
     if (isEmpty()) {
-        return <h1>Tu carrito esta vacío</h1>
+        return <div>
+            <h1>Tu carrito esta vacío</h1>
+            <Link to={'/'} className='finish' >Volver a inicio</Link>
+        </div>
     }
 
     const cartRows = cart.map(prod =>
@@ -26,6 +30,7 @@ const Cart = () => {
             <h1>Tu carrito</h1>
             {cartRows}
             <h3>Total: ${total()}</h3>
+            <p><Button onClick={() => clearCart()} variant="info">Vaciar carrito</Button></p>
             <Link to={'/checkout'} className='finish' >Finalizar compra</Link>
         </div>
 
