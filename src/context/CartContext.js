@@ -1,4 +1,5 @@
-import {useState, useEffect, createContext} from 'react'
+import {useState, useEffect, createContext, useContext} from 'react'
+import { NotificationContext } from "../notification/NotificationProvider";
 
 export const CartContext = createContext()
 
@@ -6,9 +7,12 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [totalQuantity, setTotalQuantity] = useState(0)
 
+    const { setNotification } = useContext(NotificationContext)
+
     useEffect(() => {
         setTotalQuantity(getQuantity())
     }, [cart])
+
 
     const addItem = (productToAdd) => {
         if(!isInCart(productToAdd.id)){

@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import { addDoc, collection, getDocs, query, where, documentId, writeBatch } from 'firebase/firestore'
 import { db } from "../../services/firebase/index";
 import { useNavigate } from 'react-router-dom'
-import MyForm from "../../MyForm/MyForm";
+import MyForm from "../MyForm/MyForm";
+import { NotificationContext } from "../../notification/NotificationProvider";
 
 
 const Checkout = () => {
@@ -16,6 +17,8 @@ const Checkout = () => {
     const [buyer, setBuyer] = useState({})
 
     const { cart, total, clearCart } = useContext(CartContext)
+
+    const { setNotification } = useContext(NotificationContext)
 
     const navigate = useNavigate()
 
@@ -69,13 +72,13 @@ const Checkout = () => {
                     navigate('/')
                 }, 3000)
 
-                console.log(`El id de su orden es: ${orderAdded.id}`)
+                setNotification('success', `Orden creada con éxito! El id de su orden es: ${orderAdded.id}`)
             } else {
-                console.log('Hay productos que estan fuera de stock')
+                setNotification('error', 'Hay productos que estan fuera de stock')
             }
 
         } catch (error) {
-            console.log(error)
+            setNotification('error', 'No se pudo crear la orden')
         } finally {
             setLoading(false)
         }
@@ -94,13 +97,14 @@ const Checkout = () => {
         }
         setBuyer(buyer)
         setDataSent(true)
+        setNotification('success', 'Datos enviados. Ya puede generar la orden')
     }
 
     return (
         <div>
             <h1>Checkout</h1>
             <MyForm handleSubmit={(ev) => handleSubmit(ev)} />
-            { dataSent && <Button onClick={createOrder} variant="info">Generar orden</Button>}
+            { dataSent && <Button onClick={createOrder} variant="info" size="lg">Generar orden</Button>}
         </div>
     )
 }

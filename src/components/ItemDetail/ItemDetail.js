@@ -5,15 +5,20 @@ import Counter from '../Counter/Counter'
 import { Link } from 'react-router-dom';
 import {useContext} from 'react'
 import { CartContext } from "../../context/CartContext";
+import { NotificationContext } from "../../notification/NotificationProvider";
 
 
 const ItemDetail = ({id, name, img, category, description, price, stock}) => {
+    
     const [ready, setReady] = useState(false)
+    
     const {addItem} = useContext(CartContext)
+    const { setNotification } = useContext(NotificationContext)
     
     const handleOnAdd = (quantity) => {
         const productToAdd = {id, name, price, quantity}
         addItem(productToAdd)
+        setNotification('success', `Se agregó correctamente ${quantity} ${name}`)
         setReady(true)
     }
 
