@@ -17,8 +17,9 @@ const ItemDetail = ({id, name, img, category, description, price, stock}) => {
     
     const handleOnAdd = (quantity) => {
         const productToAdd = {id, name, price, quantity}
-        addItem(productToAdd)
-        setNotification('success', `Se agregó correctamente ${quantity} ${name}`)
+        let success= addItem(productToAdd)
+        console.log(success)
+        success === true ? setNotification('success', `Se agregó correctamente ${quantity} ${name}`) : setNotification('error', `${name} ya esta en el carrito!`)
         setReady(true)
     }
 
